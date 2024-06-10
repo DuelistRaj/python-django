@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload File</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+        }
+        .upload-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .upload-container h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .upload-container p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #777;
+        }
+        .upload-icon {
+            font-size: 64px;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+        .file-field .btn, .btn-submit {
+            background-color: #4a90e2;
+            border-radius: 25px;
+        }
+        .file-field .btn:hover, .btn-submit:hover {
+            background-color: #357abd;
+        }
+        .file-field .file-path-wrapper input {
+            border-bottom: none;
+            box-shadow: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="tooltipped" data-position="bottom" data-tooltip="v1.0<br>Rahul Raj<br>Upasana Pahuja">RACI Tool</h1>
+    </div>
+    <div class="upload-container">
+        <h2>Upload RACI file(xlsx)</h2>
+        <p>HBAP SP&ST</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span><i class="material-icons upload-icon">folder</i></span>
+                    <input type="file" name="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Drag and drop files here">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+        <br>
+        <a href="{% url 'display_last_file' %}" class="btn btn-submit">Display Last File</a>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.tooltipped');
+            var instances = M.Tooltip.init(elems, {html: true});
+        });
+    </script>
+</body>
+</html>
